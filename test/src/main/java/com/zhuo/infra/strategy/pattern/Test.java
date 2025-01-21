@@ -19,11 +19,9 @@ public class Test {
         Auth ps = (Auth) facade.getStrategyImpl(Auth.class, "ps");
         ps.auth();
 
-        List<Class<?>> clazz = new ArrayList<>();
-        clazz.add(Map.class);
         List<Object> objects = new ArrayList<>();
         objects.add(new HashMap<>());
-        facade.registerIStrategyImpl(AAAuth.class, "aa" ,clazz, objects);
+        facade.registerIStrategyImpl(AAAuth.class, "aa" ,objects);
         Auth aa = (Auth) facade.getStrategyImpl(Auth.class, "aa");
         aa.auth();
     }

@@ -13,7 +13,7 @@ public interface IStrategyFacade {
 
     IStrategyFacade registerIStrategyImpl(Class<?> istrategyImpl, String key);
 
-    IStrategyFacade registerIStrategyImpl(Class<?> istrategyImpl, String key, List<Class<?>> constructClazz ,List<Object> constructData);
+    IStrategyFacade registerIStrategyImpl(Class<?> istrategyImpl, String key,List<Object> constructData);
 
     IStrategy getStrategyImpl(Class<?> istrategy, String key);
 }
