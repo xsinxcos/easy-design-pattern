@@ -15,11 +15,14 @@ public class StrategyFacade implements IStrategyFacade{
 
     @Override
     public IStrategyFacade registerIStrategy(Class<?> istrategy) {
-        if (istrategy.isInterface()){
-            strategyFFactory.register(istrategy.getName(), new StrategyFactory());
-            return this;
+        if (!istrategy.isInterface()){
+            throw new StrategyException(istrategy.getName() + " not interface");
         }
-        throw new StrategyException(istrategy.getName() + " not interface");
+        if (!IStrategy.class.isAssignableFrom(istrategy)){
+            throw new StrategyException(istrategy.getName() + " not to extend interface IStrategy");
+        }
+        strategyFFactory.register(istrategy.getName(), new StrategyFactory());
+        return this;
     }
 
     @Override
