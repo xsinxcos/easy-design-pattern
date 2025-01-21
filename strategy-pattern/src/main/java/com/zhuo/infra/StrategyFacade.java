@@ -24,15 +24,16 @@ public class StrategyFacade implements IStrategyFacade{
             throw new StrategyException(istrategyImpl.getName() + " not class(impl)");
         }
         Class<?>[] interfaces = istrategyImpl.getInterfaces();
-        for (Class<?> anInterface : interfaces) {
-            if(strategyFFactory.contain(anInterface.getName())){
-                IStrategyFactory iStrategyFactory = strategyFFactory.get(anInterface.getName());
-                try {
-                    iStrategyFactory.register(key, (IStrategy) istrategyImpl.newInstance());
-                } catch (InstantiationException | IllegalAccessException e) {
-                    throw new StrategyException(istrategyImpl.getName() + ": fail to instantiate");
+        try {
+            IStrategy iStrategy = (IStrategy) istrategyImpl.newInstance();
+            for (Class<?> anInterface : interfaces) {
+                if(strategyFFactory.contain(anInterface.getName())){
+                    IStrategyFactory iStrategyFactory = strategyFFactory.get(anInterface.getName());
+                    iStrategyFactory.register(key, iStrategy);
                 }
             }
+        } catch (InstantiationException | IllegalAccessException e) {
+            throw new StrategyException(istrategyImpl.getName() + ": fail to instantiate");
         }
         return this;
     }
