@@ -1,5 +1,7 @@
 package com.zhuo.infra;
 
+import java.util.List;
+
 /**
  * 对外暴露接口
  *
@@ -10,6 +12,8 @@ public interface IStrategyFacade {
     IStrategyFacade registerIStrategy(Class<?> istrategy);
 
     IStrategyFacade registerIStrategyImpl(Class<?> istrategyImpl, String key);
+
+    IStrategyFacade registerIStrategyImpl(Class<?> istrategyImpl, String key, List<Class<?>> constructClazz ,List<Object> constructData);
 
     IStrategy getStrategyImpl(Class<?> istrategy, String key);
 }
