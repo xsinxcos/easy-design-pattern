@@ -60,7 +60,7 @@ public class StrategyFacade implements IStrategyFacade{
         } catch (NoSuchMethodException | InvocationTargetException | IllegalAccessException | InstantiationException e) {
             throw new StrategyException(e.getMessage());
         }
-        return null;
+        return this;
     }
 
     private boolean notClass(Class<?> clazz){
